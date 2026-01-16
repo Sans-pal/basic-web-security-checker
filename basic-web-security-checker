@@ -1,0 +1,22 @@
+import requests
+
+url = input("Enter website URL (https://): ")
+
+try:
+    response = requests.get(url, timeout=5)
+    headers = response.headers
+
+    print("\nSecurity Header Check:\n")
+
+    if "Content-Security-Policy" in headers:
+        print("CSP header found")
+    else:
+        print("CSP header missing")
+
+    if "X-Frame-Options" in headers:
+        print("X-Frame-Options header found")
+    else:
+        print("X-Frame-Options header missing")
+
+except Exception as e:
+    print("Error accessing the website")
